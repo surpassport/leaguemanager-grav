@@ -1,28 +1,20 @@
-# League Plugin
+# League Manager Plugin
 
 **This README.md file should be modified to describe the features, installation, configuration, and general usage of this plugin.**
 
-The **League** Plugin is for [Grav CMS](http://github.com/getgrav/grav). Integration with [League Manager](https://leaguemanager.ie)
+The **League Manager** Plugin is for [Grav CMS](http://github.com/getgrav/grav). Integration with [League Manager](https://leaguemanager.ie)
 
 ## Installation
 
 Installing the League plugin can be done in one of two ways. The GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
 
-### GPM Installation (Preferred)
-
-The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's terminal (also called the command line).  From the root of your Grav install type:
-
-    bin/gpm install league
-
-This will install the League plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/league`.
-
 ### Manual Installation
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `league`. You can find these files on [GitHub](https://github.com/victor-diaz/grav-plugin-league) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
+To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `leaguemanager`. You can find these files on [GitHub](https://github.com/surpassport/leaguemanager-grav) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
 
 You should now have all the plugin files under
 
-    /your/site/grav/user/plugins/league
+    /your/site/grav/user/plugins/leaguemanager
 	
 > NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
 
@@ -32,7 +24,7 @@ If you use the admin plugin, you can install directly through the admin plugin b
 
 ## Configuration
 
-Before configuring this plugin, you should copy the `user/plugins/league/league.yaml` to `user/config/plugins/league.yaml` and only edit that copy.
+Before configuring this plugin, you should copy the `user/plugins/leaguemanager/leaguemanager.yaml` to `user/config/plugins/leaguemanager.yaml` and only edit that copy.
 
 Here is the default configuration and an explanation of available options:
 

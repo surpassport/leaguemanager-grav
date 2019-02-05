@@ -1,14 +1,14 @@
-name: League
-version: 0.1.0
-description: Integration with League Manager
+name: LeagueManager
+version: 0.9.0
+description: Integration with LeagueManager
 icon: plug
 author:
   name: Victor Diaz
   email: victordiazbl@gmail.com
-homepage: https://github.com/victor-diaz/grav-plugin-league
+homepage: https://github.com/surpassport/leaguemanager-grav
 keywords: grav, plugin, etc
-bugs: https://github.com/victor-diaz/grav-plugin-league/issues
-docs: https://github.com/victor-diaz/grav-plugin-league/blob/develop/README.md
+bugs: https://github.com/surpassport/leaguemanager-grav/issues
+docs: https://github.com/surpassport/leaguemanager-grav/blob/develop/README.md
 license: MIT
 
 form:

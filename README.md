@@ -1,8 +1,7 @@
 # League Manager Plugin
 
-**This README.md file should be modified to describe the features, installation, configuration, and general usage of this plugin.**
+The **League Manager Plugin** allows leagues managed on SURPASSPORT [LeagueManager](https://leaguemanager.ie) to be embedded on [Grav CMS](http://github.com/getgrav/grav) powered websites. See [https://leaguemanager.ie/demo](https://leaguemanager.ie/demo) for a live example.
 
-The **League Manager** Plugin is for [Grav CMS](http://github.com/getgrav/grav). Integration with [League Manager](https://leaguemanager.ie)
 
 ## Installation
 
@@ -15,7 +14,7 @@ To install this plugin, just download the zip version of this repository and unz
 You should now have all the plugin files under
 
     /your/site/grav/user/plugins/leaguemanager
-	
+
 > NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
 
 ### Admin Plugin
@@ -36,13 +35,8 @@ Note that if you use the admin plugin, a file with your configuration, and named
 
 ## Usage
 
-**Describe how to use the plugin.**
+To make this work on your site, install the **League Manager Plugin** on your Grav website. Next, enable an integration on your account and copy the generated authorisation token into your leaguemanager.yaml file, or use the Admin panel. Done!
 
-## Credits
+Your leagues are listed by season and allows your visitors to view divisions, groupings and fixtures. Results, league tables and playoffs are all presented when available, and can be controlled using the options set on your integration configuration.
 
-**Did you incorporate third-party code? Want to thank somebody?**
-
-## To Do
-
-- [ ] Future plans, if any
-
+For performance reasons, content is cached on your website server for a period of 1 hour. We trust you understand.

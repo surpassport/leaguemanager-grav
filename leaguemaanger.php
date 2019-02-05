@@ -9,10 +9,10 @@ use RocketTheme\Toolbox\Event\Event;
 use Grav\Common\Cache;
 
 /**
- * Class LeaguePlugin
+ * Class LeagueManagerPlugin
  * @package Grav\Plugin
  */
-class LeaguePlugin extends Plugin
+class LeagueManagerPlugin extends Plugin
 {
     /**
      * @return array
@@ -68,11 +68,11 @@ class LeaguePlugin extends Plugin
         }
 
         if(!isset($result) || empty($result)) {
-            
+
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'https://app.surpassport.com/api/'.$uri);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_USERPWD, 
+            curl_setopt($ch, CURLOPT_USERPWD,
                     $this->grav['config']->get('plugins.league.text_var'));
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             $result = curl_exec($ch);
@@ -96,25 +96,25 @@ class LeaguePlugin extends Plugin
      * @param Event $e
      */
     public function onPageContentRaw(Event $e)
-    {        
+    {
         // Get the current raw content
         $content = $e['page']->getRawContent();
 
         $uri = $this->grav['uri'];
-        
-        $route = $this->config->get('plugins.league.routes.league');
+
+        $route = $this->config->get('plugins.leaguemanager.routes.league');
         if ($route == $uri->path()) {
             $e['page']->setRawContent('<h1>League</h1>');
         }
 
-        
-        $route = $this->config->get('plugins.league.routes.seasons');
+
+        $route = $this->config->get('plugins.leaguemanager.routes.seasons');
         if ($route == $uri->path()) {
 
 
             $content = "";
-            $obj = $this->resolve('seasons');            
-            
+            $obj = $this->resolve('seasons');
+
             $long = count($obj);
             for($i=0; $i<$long; $i++) {
                 $content = $content.'<a href="'.$obj[$i]->uri.'">'.$obj[$i]->label.'</a><br/>';
@@ -126,8 +126,8 @@ class LeaguePlugin extends Plugin
                 </script>');
 
         } else {
-        
-            $uriseason = explode('/',$uri->path());    
+
+            $uriseason = explode('/',$uri->path());
             $hostname = 'http://'.getenv('HTTP_HOST');
 
             //If we are looking for a season
@@ -140,7 +140,7 @@ class LeaguePlugin extends Plugin
                         $uriseasontitle = $uriseasontitle.$uriseasonname[$i].' ';
                     }
                 }
-                
+
 
                 $obj2 = $this->resolve($uri->path());
 
@@ -148,7 +148,7 @@ class LeaguePlugin extends Plugin
                 $long = count($obj2);
                 for($i=0; $i<$long; $i++) {
                     $f = $i+1;
-                    $content = $content.'<a href="'.$hostname.'/'.$obj2[$i].'">Competition '.$f.'</a><br/>';
+                    $content = $content.'<a href="'.$hostname.'/'.$obj2[$i].'">'.$f.'</a><br/>';
                 }
 
 
@@ -156,38 +156,38 @@ class LeaguePlugin extends Plugin
 
                 $e['page']->setRawContent('<h1>Season '.$uriseasontitle.'</h1>'.$content.
                 '<script type="text/javascript">
-                    document.title = "Season '.$uriseasontitle.'"
+                    document.title = "'.$uriseasontitle.'"
                 </script>');
-                
+
             }
 
             //If we are looking for a competition
             if ($uriseason[1] == 'competition') {
-                
+
                 $obj3 = $this->resolve($uri->path());
 
                 $content = "";
                 $long = count($obj3->divisions);
                 for($i=0; $i<$long; $i++) {
                     $f = $i+1;
-                    $content = $content.'<a href="'.$hostname.'/'.$obj3->divisions[$i].'">Division '.$f.'</a><br/>';
+                    $content = $content.'<a href="'.$hostname.'/'.$obj3->divisions[$i].'">'.$f.'</a><br/>';
                 }
 
-                $e['page']->setRawContent('<h1>Competition '.$obj3->name.'</h1>'.
+                $e['page']->setRawContent('<h1>'.$obj3->name.'</h1>'.
                     '<b>Type:</b> '.$obj3->type.'<br/>'.
                     '<b>Season:</b> '.$obj3->season.'<br/>'.
                     '<b>Sport:</b> '.$obj3->sport.'<br/>'.
                     '<br/>'.
                     $content.
                 '<script type="text/javascript">
-                    document.title = "Competition '.$obj3->name.'"
+                    document.title = "'.$obj3->name.'"
                 </script>');
 
             }
 
             //If we are looking for a division
             if ($uriseason[1] == 'division') {
-                
+
                 $obj4 = $this->resolve($uri->path());
 
                 $names = array();
@@ -202,8 +202,8 @@ class LeaguePlugin extends Plugin
                     $names[$i] = $obj5->name;
 
                     if(isset($obj5->standings) && isset($obj5->standings->standings)){
-                    
-                    
+
+
                     $content = $content.'<h3>'.$obj5->name.'</h3><br/><table style="margin: 0px auto;">
                         <tbody>
                         <tr>
@@ -217,13 +217,13 @@ class LeaguePlugin extends Plugin
                         <th>Diff</th>
                         </tr>';
 
-                    
+
                     $long2 = count($obj5->standings->standings);
                     for($j=0; $j<$long2; $j++) {
                         $g = $j+1;
 
                         $obj6 = $this->resolve($obj5->standings->standings[$j]->team);
-                        
+
                         $content = $content.'<tr>
                             <td>'.$g.'</td>
                             <td>'.$obj6->name.'</td>
@@ -233,7 +233,7 @@ class LeaguePlugin extends Plugin
                             <td>'.$obj5->standings->standings[$j]->drawn.'</td>
                             <td>'.$obj5->standings->standings[$j]->points.'</td>
                             <td>'.$obj5->standings->standings[$j]->delta.'</td>';
-                        
+
                     }
 
 
@@ -253,7 +253,7 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
                 '<script type="text/javascript">
                     document.title = "'.$obj4->name.'"
                 </script>');
-                
+
             }
         }
 
